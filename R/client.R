@@ -488,7 +488,7 @@ Client <- R6::R6Class(
             }
 
             for (i in 1:length(organizations)) {
-                org <- organizations[[i]]
+                org <- self$collaboration$organizations[[organizations[[i]]]]
 
                 if (self$using_encryption) {
                     # Returns a string containing 3 base64 encoded components, separated by
