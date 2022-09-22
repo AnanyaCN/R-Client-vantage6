@@ -484,7 +484,7 @@ Client <- R6::R6Class(
             # If we're using encryption, we'll need to encrypt the input for each organization
             # individually (using the organization's public key).
             organizations <- self$organizations
-            if is.null(organizations){
+            if (is.null(organizations)){
                 organizations <- c()
                 organizations <- self$collaboration$organizations
             }
