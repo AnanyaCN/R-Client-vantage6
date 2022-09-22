@@ -487,7 +487,7 @@ Client <- R6::R6Class(
             #    organizations <- c()
              #   organizations <- self$collaboration$organizations
             #}
-
+            j <- 1
             for (i in 1:length(self$collaboration$organizations)) {
                 if (self$collaboration$organizations[[i]]$id %in% self$organizations) {
                     org <- self$collaboration$organizations[[i]]
@@ -505,7 +505,8 @@ Client <- R6::R6Class(
                         input <- openssl::base64_encode(serialized.input)
                     }
 
-                    organizations[[i]] <- list(id=org$id, input=input)
+                    organizations[[j]] <- list(id=org$id, input=input)
+                    j <- j+1
                     print(organizations)
                 }
                 else {
