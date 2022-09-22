@@ -176,8 +176,6 @@ Client <- R6::R6Class(
             self$organizations <- OrganizationIds
             },
 
-        setOrganizations = function(organizations)
-
         setUseEncryption = function(flag) {
             self$using_encryption <- flag
         },
