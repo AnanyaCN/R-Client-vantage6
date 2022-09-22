@@ -481,16 +481,16 @@ Client <- R6::R6Class(
 
             # If we're using encryption, we'll need to encrypt the input for each organization
             # individually (using the organization's public key).
-            organizations <- self$organizations
-            if (is.null(organizations)){
-                organizations <- c()
-                organizations <- self$collaboration$organizations
-            }
+            #organizations <- self$organizations
+            #if (is.null(organizations)){
+            #    organizations <- c()
+             #   organizations <- self$collaboration$organizations
+            #}
 
             for (i in 1:length(self$collaboration$organizations)) {
                 if (self$collaboration$organizations[[i]]$id %in% self$organizations) {
                     org <- self$collaboration$organizations[[i]]
-                    print(org)
+                    print(org$id)
 
                     if (self$using_encryption) {
                         # Returns a string containing 3 base64 encoded components, separated by
