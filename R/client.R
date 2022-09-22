@@ -168,7 +168,7 @@ Client <- R6::R6Class(
                 decoded <- base64enc::base64decode(organization$public_key)
                 organization$public_key <- rawToChar(decoded)
 
-                self$collaboration$organizations[[org$id]] <- organization
+                self$collaboration$organizations[[orgnr]] <- organization
             }
         },
 
@@ -487,24 +487,29 @@ Client <- R6::R6Class(
                 organizations <- self$collaboration$organizations
             }
 
-            for (i in 1:length(organizations)) {
-                org <- self$collaboration$organizations[[organizations[[i]]]]
-                print(org)
+            for (i in 1:length(self$collaboration$organizations)) {
+                if (self$collaboration$organizations[[i]]$id %in% self$organizations) {
+                    org <- self$collaboration$organizations[[organizations[[i]]]]
+                    print(org)
 
-                if (self$using_encryption) {
-                    # Returns a string containing 3 base64 encoded components, separated by
-                    # a '$':
-                    #   1: (RSA) encrypted key,
-                    #   2: initialization vector (iv),
-                    #   3: (AES) encrypted body
-                    input <- self$encrypt(serialized.input, org)
-                    print(input)
+                    if (self$using_encryption) {
+                        # Returns a string containing 3 base64 encoded components, separated by
+                        # a '$':
+                        #   1: (RSA) encrypted key,
+                        #   2: initialization vector (iv),
+                        #   3: (AES) encrypted body
+                        input <- self$encrypt(serialized.input, org)
+                        print(input)
 
-                } else {
-                    input <- openssl::base64_encode(serialized.input)
+                    } else {
+                        input <- openssl::base64_encode(serialized.input)
+                    }
+
+                    organizations[[i]] <- list(id=org$id, input=input)
                 }
-
-                organizations[[i]] <- list(id=org$id, input=input)
+                else {
+                    print("Skipping Organizations")
+                }  
             }
 
             task = list(
