@@ -489,7 +489,7 @@ Client <- R6::R6Class(
 
             for (i in 1:length(self$collaboration$organizations)) {
                 if (self$collaboration$organizations[[i]]$id %in% self$organizations) {
-                    org <- self$collaboration$organizations[[organizations[[i]]]]
+                    org <- self$collaboration$organizations[[i]]
                     print(org)
 
                     if (self$using_encryption) {
@@ -499,7 +499,6 @@ Client <- R6::R6Class(
                         #   2: initialization vector (iv),
                         #   3: (AES) encrypted body
                         input <- self$encrypt(serialized.input, org)
-                        print(input)
 
                     } else {
                         input <- openssl::base64_encode(serialized.input)
