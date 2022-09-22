@@ -1,0 +1,21 @@
+Package: vtg
+Type: Package
+Version: 0.1.0
+Title: Utilities for the vantage6 Federated Learning Infrastructure
+Description: This package can be used with the vantage6 federated
+    learning infrastructure (see https://github.com/IKNL/vantage6).
+Author: Melle Sieswerda
+Maintainer: Melle Sieswerda <m.sieswerda@iknl.nl>
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Roxygen: list(markdown = TRUE)
+Imports:
+    R6,
+    httr,
+    rjson,
+    progress,
+    base64enc,
+    lgr,
+    hexView
