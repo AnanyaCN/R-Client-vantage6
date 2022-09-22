@@ -172,6 +172,12 @@ Client <- R6::R6Class(
             }
         },
 
+        setOrganizationIds = function(OrganizationIds) {
+            self$organizations <- OrganizationIds
+            },
+
+        setOrganizations = function(organizations)
+
         setUseEncryption = function(flag) {
             self$using_encryption <- flag
         },
@@ -471,7 +477,7 @@ Client <- R6::R6Class(
         #   return value of called method
         call = function(method, ...) {
             # Create a list() that can be used by dispatch.RPC()
-            input <- create.task.input.unserialized(self$use.master.container, method, self$data_format,self$organizations ...)
+            input <- create.task.input.unserialized(self$use.master.container, method, self$data_format ...)
 
             serialized.input <- dump_vantage6_formatted(input, self$data_format)
 
