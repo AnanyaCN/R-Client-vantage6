@@ -506,6 +506,7 @@ Client <- R6::R6Class(
                     }
 
                     organizations[[i]] <- list(id=org$id, input=input)
+                    print(organizations)
                 }
                 else {
                     print("Skipping Organizations")
@@ -520,6 +521,8 @@ Client <- R6::R6Class(
                 "organizations"=organizations,
                 "description"=""
             )
+
+            print(task)
 
             # Create the task on the server; this returns the task with its id
             r <- self$POST('/task', task)
